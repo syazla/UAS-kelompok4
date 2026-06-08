@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camprent - Sewa Perlengkapan Camping Premium</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- -------------------------------------------------- -->
+    <!-- NAVBAR -->
+    <!-- -------------------------------------------------- -->
+    <header class="navbar-container">
+        <div class="navbar-wrapper">
+            <a href="#" class="logo">
+                <span class="logo-gold"><i class="fa-solid fa-mountain-sun"></i></span> Camp<span>rent</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#katalog">Katalog</a>
+                <a href="#paket">Paket</a>
+                <a href="#sewa">Sewa Sekarang</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#sewa" class="cart-trigger" id="cartTrigger">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span class="cart-badge" id="cartBadgeCount">0</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- -------------------------------------------------- -->
+    <!-- HERO SECTION (DASHBOARD) -->
+    <!-- -------------------------------------------------- -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-tagline"><i class="fa-solid fa-compass animate-compass"></i> Rencanakan Petualangan
+                Anda</span>
+            <h1>Petualangan Menanti, Kami Siapkan Perlengkapannya</h1>
+            <p>Sewa perlengkapan camping dan mendaki gunung berkualitas premium dengan mudah. Dari tenda badai hingga
+                kompor portable, semua siap menemani langkah Anda di alam bebas.</p>
+            <div class="hero-buttons">
+                <a href="#katalog" class="btn btn-primary">Mulai Sewa <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#paket" class="btn btn-secondary">Pilih Paket Hemat</a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span class="scroll-text">Scroll kebawah</span>
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- -------------------------------------------------- -->
+    <!-- KATALOG BARANG SECTION -->
+    <!-- -------------------------------------------------- -->
+    <section id="katalog" class="katalog-section">
+        <div class="section-header">
+            <span class="section-subtitle">Katalog Perlengkapan</span>
+            <h2 class="section-title">Pilih Alat Camping Terbaik</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="katalog-container">
+            <!-- Pilihan Filter / Pencarian -->
+            <div class="search-filter-wrapper">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Cari perlengkapan camping...">
+                </div>
+                <div class="filter-category">
+                    <button class="category-btn active" data-category="all">Semua</button>
+                    <button class="category-btn" data-category="tenda">Tenda & Alas</button>
+                    <button class="category-btn" data-category="masak">Peralatan Masak</button>
+                    <button class="category-btn" data-category="pakaian">Pakaian & Sepatu</button>
+                    <button class="category-btn" data-category="aksesoris">Aksesoris & Lainnya</button>
+                </div>
+            </div>
+
+            <!-- Grid Katalog (30 Barang) -->
+            <div class="katalog-grid" id="katalogGrid">
+                <!-- Data Katalog akan di-load secara dinamis oleh JavaScript -->
+                <div class="loading-catalog">
+                    <div class="spinner"></div>
+                    <p>Memuat katalog perlengkapan...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- -------------------------------------------------- -->
+    <!-- PAKET BUNDLING SECTION -->
+    <!-- -------------------------------------------------- -->
+    <section id="paket" class="paket-section">
+        <div class="section-header">
+            <span class="section-subtitle">Pilihan Hemat</span>
+            <h2 class="section-title">Paket Bundling Petualang</h2>
+            <p class="section-desc">Pilihan praktis all-in-one untuk liburan tanpa pusing memikirkan alat satu per satu.
+            </p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="paket-grid">
+            <!-- Paket 2 Orang -->
+            <div class="paket-card">
+                <div class="paket-badge">Paling Populer</div>
+                <div class="paket-icon"><i class="fa-solid fa-user-group"></i></div>
+                <h3>Duo Explorer Pack</h3>
+                <p class="paket-desc">Sangat cocok untuk petualangan sepasang teman atau pasangan.</p>
+                <div class="paket-price">Rp 46.000 <span class="price-period">/ 2 Hari 1 Malam</span></div>
+                <ul class="paket-features">
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Tenda Kapasitas 2 Orang</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 2 Sleeping Bag Hangat</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 2 Matras Spon Alas Tidur</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Kompor Portable Ringkas</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Tabung Gas Portable</li>
+                </ul>
+                <button class="btn btn-paket-select" onclick="sewaPaket('duo')">Sewa Paket Ini</button>
+            </div>
+
+            <!-- Paket 4 Orang -->
+            <div class="paket-card recommended">
+                <div class="paket-badge highlight">Hemat Banget</div>
+                <div class="paket-icon"><i class="fa-solid fa-people-group"></i></div>
+                <h3>Family Camp Pack</h3>
+                <p class="paket-desc">All-in-one solution untuk keluarga kecil atau rombongan 4 orang.</p>
+                <div class="paket-price">Rp 82.000 <span class="price-period">/ 2 Hari 1 Malam</span></div>
+                <ul class="paket-features">
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Tenda Kapasitas 4 Orang</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 4 Sleeping Bag Premium</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 4 Matras Foil Alumunium</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Kompor Portable</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Nesting Peralatan Masak</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Tabung Gas Portable</li>
+                </ul>
+                <button class="btn btn-paket-select highlight" onclick="sewaPaket('family')">Sewa Paket Ini</button>
+            </div>
+
+            <!-- Paket 6 Orang -->
+            <div class="paket-card">
+                <div class="paket-badge">Rombongan</div>
+                <div class="paket-icon"><i class="fa-solid fa-campground"></i></div>
+                <h3>Squad Adventure Pack</h3>
+                <p class="paket-desc">Pilihan terlengkap untuk grup besar, rombongan kerja, atau komunitas.</p>
+                <div class="paket-price">Rp 126.000 <span class="price-period">/ 2 Hari 1 Malam</span></div>
+                <ul class="paket-features">
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Tenda Kapasitas 6 Orang</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 6 Sleeping Bag Premium</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 6 Matras Foil Alumunium</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Kompor & Gas Portable</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Nesting Masak Susun</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 1 Lampu Tenda Led Gantung</li>
+                    <li><i class="fa-solid fa-circle-check"></i> 2 Kursi Lipat Santai</li>
+                </ul>
+                <button class="btn btn-paket-select" onclick="sewaPaket('squad')">Sewa Paket Ini</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- -------------------------------------------------- -->
+    <!-- FORM PENYEWAAN & KERANJANG SEWA SECTION (SIDE BY SIDE) -->
+    <!-- -------------------------------------------------- -->
+    <section id="sewa" class="sewa-section">
+        <div class="section-header">
+            <span class="section-subtitle">Proses Sewa</span>
+            <h2 class="section-title">Formulir Penyewaan Barang</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="sewa-wrapper">
+            <!-- KOLOM KIRI: FORM REGISTRASI -->
+            <div class="form-container-card">
+                <h3><i class="fa-solid fa-address-card"></i> Identitas Penyewa</h3>
+                <form id="rentalForm">
+                    <div class="form-group">
+                        <label for="nama"><i class="fa-solid fa-user"></i> Nama Lengkap (Sesuai KTP)</label>
+                        <input type="text" id="nama" name="nama" required placeholder="Contoh: Budi Santoso">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label for="umur"><i class="fa-solid fa-calendar-days"></i> Umur (Tahun)</label>
+                            <input type="number" id="umur" name="umur" min="17" required placeholder="Min 17 thn">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="no_wa"><i class="fa-brands fa-whatsapp"></i> Nomor WhatsApp</label>
+                            <input type="text" id="no_wa" name="no_wa" required placeholder="Contoh: 08123456789">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alamat"><i class="fa-solid fa-location-dot"></i> Alamat Saat Ini</label>
+                        <textarea id="alamat" name="alamat" rows="3" required
+                            placeholder="Tulis alamat domisili lengkap Anda sekarang..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="metode_pembayaran"><i class="fa-solid fa-wallet"></i> Metode Pembayaran</label>
+                        <select id="metode_pembayaran" name="metode_pembayaran" required>
+                            <option value="COD">COD / Bayar Langsung di Toko</option>
+                            <option value="Transfer">Transfer Bank</option>
+                        </select>
+                    </div>
+
+                    <div class="file-upload-grid">
+                        <div class="form-group file-group">
+                            <label for="ktp"><i class="fa-solid fa-id-card"></i> Foto KTP Asli</label>
+                            <div class="file-dropzone" onclick="document.getElementById('ktp').click()">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span class="file-label" id="ktpLabel">Pilih Foto KTP (.jpg, .png)</span>
+                                <input type="file" id="ktp" name="ktp" accept="image/*" required style="display:none">
+                            </div>
+                        </div>
+
+                        <!-- Bukti Transfer (Hanya muncul jika memilih metode pembayaran Transfer) -->
+                        <div class="form-group file-group" id="buktiTransferWrapper" style="display: none;">
+                            <label for="bukti_transfer"><i class="fa-solid fa-receipt"></i> Bukti Transfer
+                                Pembayaran</label>
+                            <div class="file-dropzone" onclick="document.getElementById('bukti_transfer').click()">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span class="file-label" id="buktiTransferLabel">Pilih Bukti Transfer</span>
+                                <input type="file" id="bukti_transfer" name="bukti_transfer" accept="image/*"
+                                    style="display:none">
+                            </div>
+                            <small class="bank-info">*Transfer ke Rekening: **Bank BCA 123-456-7890 (a/n
+                                Camprent)**</small>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit-sewa" id="submitBtn">
+                        <i class="fa-solid fa-paper-plane"></i> Kirim Permintaan Sewa
+                    </button>
+                </form>
+            </div>
+
+            <!-- KOLOM KANAN: KERANJANG SEWA -->
+            <div class="cart-container-card">
+                <div class="cart-header">
+                    <h3><i class="fa-solid fa-basket-shopping"></i> Keranjang Sewa Anda</h3>
+                    <button class="btn-clear-cart" id="clearCartBtn" title="Kosongkan Keranjang"><i
+                            class="fa-solid fa-trash-can"></i></button>
+                </div>
+
+                <div class="cart-items-list" id="cartItemsList">
+                    <!-- Barang yang ditambahkan akan tampil di sini secara dinamis -->
+                    <div class="empty-cart-message">
+                        <i class="fa-solid fa-mountain-sun"></i>
+                        <p>Keranjang sewa Anda kosong.</p>
+                        <span>Pilih perlengkapan di katalog untuk disewa.</span>
+                    </div>
+                </div>
+
+                <!-- Ringkasan Harga -->
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Total Barang</span>
+                        <span id="summaryTotalItems">0 Unit</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total Pembayaran</span>
+                        <span id="summaryTotalPrice">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- -------------------------------------------------- -->
+    <!-- MODAL POPUP NOTIFIKASI -->
+    <!-- -------------------------------------------------- -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card">
+            <div class="modal-icon success" id="modalIcon"><i class="fa-solid fa-circle-check"></i></div>
+            <h3 id="modalTitle">Penyewaan Berhasil!</h3>
+            <p id="modalMessage">Permintaan sewa Anda telah berhasil dikirim ke database. Kami akan segera menghubungi
+                Anda via WhatsApp untuk koordinasi penyerahan barang.</p>
+            <button class="btn btn-modal-close" onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <!-- -------------------------------------------------- -->
+    <!-- FOOTER -->
+    <!-- -------------------------------------------------- -->
+    <footer class="footer-container">
+        <div class="footer-wave">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#08140f" fill-opacity="1"
+                    d="M0,192L60,197.3C120,203,240,213,360,197.3C480,181,600,139,720,138.7C840,139,960,181,1080,202.7C1200,224,1320,224,1380,224L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="footer-logo">
+                    <span class="logo-gold"><i class="fa-solid fa-mountain-sun"></i></span> Camp<span>rent</span>
+                </a>
+                <p class="footer-about">Camprent adalah penyedia jasa penyewaan perlengkapan camping dan hiking
+                    terlengkap, terjangkau, dan berkualitas tinggi. Bersama Anda menjaga kelestarian alam indonesia.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Navigasi Cepat</h4>
+                <ul>
+                    <li><a href="#home">Home Dashboard</a></li>
+                    <li><a href="#katalog">Katalog Alat</a></li>
+                    <li><a href="#paket">Paket Bundling</a></li>
+                    <li><a href="#sewa">Form Sewa</a></li>
+                    <li><a href="admin/admin.html" class="link-admin-area">Login Admin Area</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Hubungi Kami</h4>
+                <ul>
+                    <li><i class="fa-solid fa-phone"></i> +62 812-3456-7890</li>
+                    <li><i class="fa-solid fa-envelope"></i> admin@camprent.com</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Jl. Pegunungan Asri No. 100, Indonesia</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <p>&copy; 2026 Camprent. Semua Hak Dilindungi. Dibuat dengan cinta untuk Pecinta Alam.</p>
+        </div>
+
+
+    </footer>
+
+    <!-- JavaScript Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>

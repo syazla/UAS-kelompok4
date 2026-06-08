@@ -1,0 +1,531 @@
+/* ==========================================================================
+   CAMP RENT ADMIN DASHBOARD - NEW CREATIVE & MODERN UI/UX
+   Earthy Palette Edition (Ebony, Shadow, Tan, Light Goldenrod Yellow)
+   ========================================================================== */
+
+:root {
+    /* Palet Warna Sesuai Gambar */
+    --ebony: #616951;
+    --shadow: #908864;
+    --tan: #D0C092;
+    --light-yellow: #FAF6D4;
+    --gold-fusion: #81734D;
+    
+    /* Warna Fungsional & UI */
+    --dark-bg: #1A1E15;        /* Kombinasi Ebony sangat gelap untuk Sidebar */
+    --body-bg: #FDFCF7;        /* Background utama hangat bersahabat */
+    --card-white: #ffffff;
+    --text-main: #33392A;      /* Teks gelap berbasis Ebony */
+    --text-muted: #7A826E;
+    
+    /* Status Colors (Dibuat lebih soft & premium) */
+    --success: #4E7043;
+    --success-bg: #E8F0E5;
+    --danger: #A64B4B;
+    --danger-bg: #FCEAEA;
+    --warning: #C28B38;
+    --warning-bg: #FDF3E1;
+    
+    /* Efek & Transisi */
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --shadow-sm: 0 4px 10px rgba(97, 105, 81, 0.05);
+    --shadow-md: 0 10px 30px rgba(97, 105, 81, 0.08);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------------------------------------------------
+   RESET & BASE STYLES
+   --------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+}
+
+/* Mengatur Scrollbar agar Estetis */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--tan);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--shadow);
+}
+
+/* ---------------------------------------------------------
+   MODAL LOGIN SYSTEM (PREMIUM LOOK)
+   --------------------------------------------------------- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(26, 30, 21, 0.92), rgba(97, 105, 81, 0.85));
+    backdrop-filter: blur(8px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+}
+
+.login-box {
+    background: var(--card-white);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 420px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(208, 192, 146, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dekorasi Estetis di Sudut Login Box */
+.login-box::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 120px; height: 120px;
+    background: var(--light-yellow);
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+.login-box h2 {
+    color: var(--ebony);
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.login-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(144, 136, 100, 0.2);
+    border-radius: var(--radius-sm);
+    outline: none;
+    font-size: 14px;
+    color: var(--text-main);
+    background-color: #FAF9F5;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    border-color: var(--ebony);
+    background-color: var(--card-white);
+    box-shadow: 0 0 0 4px rgba(97, 105, 81, 0.1);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--ebony), var(--gold-fusion));
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(97, 105, 81, 0.3);
+    transition: var(--transition);
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(97, 105, 81, 0.4);
+}
+
+.error-msg {
+    color: var(--danger);
+    background-color: var(--danger-bg);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: 13px;
+    display: none;
+    font-weight: 500;
+    border: 1px solid rgba(166, 75, 75, 0.2);
+}
+
+/* ---------------------------------------------------------
+   MAIN DASHBOARD LAYOUT
+   --------------------------------------------------------- */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR MODERN STYLE */
+.sidebar {
+    width: 280px;
+    background-color: var(--dark-bg);
+    color: #E2E4E0;
+    padding: 30px 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(208, 192, 146, 0.1);
+}
+
+.brand {
+    padding: 0 24px 28px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 25px;
+}
+
+.brand h3 { 
+    color: var(--light-yellow); 
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Menggunakan Mask URL untuk icon di sebelah nama admin */
+.brand p { 
+    font-size: 13px; 
+    color: var(--tan); 
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.brand p::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: var(--tan);
+    mask: url('assets/id-card.png') no-repeat center / contain;
+    -webkit-mask: url('assets/id-card.png') no-repeat center / contain;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 16px;
+}
+
+.menu-item {
+    padding: 14px 18px;
+    color: #B5B9B0;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Integrasi Dinamis Icon pada Menu Sidebar */
+.menu-item[onclick*="dashboard"]::before {
+    content: ''; width: 18px; height: 18px; background-color: currentColor;
+    mask: url('admin_assets/manage-user.png') no-repeat center / contain;
+    -webkit-mask: url('admin_assets/project-management.png') no-repeat center / contain;
+}
+.menu-item[onclick*="penyewaan"]::before {
+    content: ''; width: 18px; height: 18px; background-color: currentColor;
+    mask: url('admin_assets/manage-user.png') no-repeat center / contain;
+    -webkit-mask: url('admin_assets/schedule.png') no-repeat center / contain;
+}
+.menu-item[onclick*="alat"]::before {
+    content: ''; width: 18px; height: 18px; background-color: currentColor;
+    mask: url('admin_assets/staff.png') no-repeat center / contain;
+    -webkit-mask: url('admin_assets/') no-repeat center / contain;
+}
+
+.menu-item:hover, .menu-item.active {
+    background-color: rgba(97, 105, 81, 0.25);
+    color: var(--light-yellow);
+}
+
+.menu-item.active {
+    background: linear-gradient(135deg, var(--ebony), rgba(144, 136, 100, 0.4));
+    font-weight: 600;
+}
+
+.logout-btn {
+    margin-top: auto; 
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 20px;
+    color: #E57373 !important;
+}
+.logout-btn::before {
+    content: '➔';
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background-color: rgba(229, 115, 115, 0.1) !important;
+}
+
+/* MAIN CONTENT AREA */
+.content {
+    flex-grow: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+/* ---------------------------------------------------------
+   CREATIVE STATISTIK CARDS
+   --------------------------------------------------------- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    margin-top: 24px;
+}
+
+.card {
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    color: var(--text-main);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    background-color: var(--card-white);
+    border: 1px solid rgba(144, 136, 100, 0.1);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.card h4 { 
+    font-weight: 600; 
+    font-size: 14px; 
+    margin-bottom: 12px; 
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card p { 
+    font-size: 36px; 
+    font-weight: 800; 
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Modifikasi Warna Card Tematik Berdasarkan Palet */
+.card-green { 
+    background: linear-gradient(135deg, #ffffff, var(--light-yellow));
+    border-left: 6px solid var(--ebony);
+    color: var(--text-main);
+}
+.card-green h4 { color: var(--ebony); }
+
+.card-yellow { 
+    background: linear-gradient(135deg, #ffffff, #FFFBF0);
+    border-left: 6px solid var(--warning);
+    color: var(--text-main);
+}
+.card-yellow h4 { color: var(--warning); }
+
+.card-black { 
+    background: linear-gradient(135deg, #ffffff, #F4F6F0);
+    border-left: 6px solid var(--shadow);
+    color: var(--text-main);
+}
+.card-black h4 { color: var(--shadow); }
+
+/* ---------------------------------------------------------
+   TABS / SECTIONS STYLE
+   --------------------------------------------------------- */
+.dashboard-section {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+.dashboard-section.active-section {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-section h2 {
+    margin-bottom: 28px;
+    color: var(--ebony);
+    font-size: 24px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 12px;
+    border: none;
+}
+
+/* Garis bawah judul h2 yang modern */
+.dashboard-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 60px; height: 4px;
+    background-color: var(--ebony);
+    border-radius: 2px;
+}
+
+/* ---------------------------------------------------------
+   TABEL DATA PREMIUM & CLEAN
+   --------------------------------------------------------- */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    background: var(--card-white);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(144, 136, 100, 0.1);
+}
+
+.table-custom {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* Memberi jarak antar baris */
+    font-size: 14px;
+    text-align: left;
+}
+
+.table-custom th {
+    background-color: var(--light-yellow);
+    color: var(--text-main);
+    padding: 16px;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: none;
+}
+
+/* Melengkungkan sudut header tabel */
+.table-custom th:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.table-custom th:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+
+.table-custom td {
+    padding: 16px;
+    background-color: #FAF9F5; /* Baris memiliki background terpisah */
+    border-top: 1px solid rgba(208, 192, 146, 0.15);
+    border-bottom: 1px solid rgba(208, 192, 146, 0.15);
+    vertical-align: middle;
+    color: #4A5043;
+    transition: var(--transition);
+}
+
+.table-custom tr td:first-child { border-left: 1px solid rgba(208, 192, 146, 0.15); border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.table-custom tr td:last-child { border-right: 1px solid rgba(208, 192, 146, 0.15); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+
+.table-custom tr:hover td {
+    background-color: #F4F2E9;
+    color: var(--text-main);
+}
+
+/* Badges Status Premium Minimalis */
+.badge {
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    display: inline-block;
+    text-align: center;
+}
+.badge-pending { background-color: var(--warning-bg); color: var(--warning); }
+.badge-disetujui { background-color: var(--success-bg); color: var(--success); }
+.badge-ditolak { background-color: var(--danger-bg); color: var(--danger); }
+
+/* Image Thumbnail Kreatif */
+.img-thumb {
+    width: 64px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--tan);
+    transition: var(--transition);
+}
+
+.img-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Tombol Aksi Admin yang Elegan */
+.btn-action {
+    padding: 8px 14px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 12px;
+    margin-bottom: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 6px;
+    transition: var(--transition);
+}
+.btn-approve { background-color: var(--success); color: white; }
+.btn-reject { background-color: var(--danger); color: white; }
+
+.btn-approve:hover { background-color: #3B5433; transform: translateY(-1px); }
+.btn-reject:hover { background-color: #853C3C; transform: translateY(-1px); }
+
+/* ---------------------------------------------------------
+   RESPONSIVE LAYOUT SMARTPHONE & TABLET
+   --------------------------------------------------------- */
+@media (max-width: 992px) {
+    .dashboard-container { flex-direction: column; }
+    .sidebar { width: 100%; padding: 20px 0; }
+    .brand { padding: 0 20px 15px 20px; margin-bottom: 15px; }
+    .menu { flex-direction: row; flex-wrap: wrap; }
+    .menu-item { width: auto; flex: 1 1 150px; }
+    .logout-btn { margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+    .content { padding: 20px; }
+}

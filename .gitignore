@@ -1,0 +1,25 @@
+# Dependency directories
+backend/node_modules/
+node_modules/
+
+# Local env files
+backend/.env
+.env
+
+# WhatsApp Web Session storage
+backend/.wwebjs_auth/
+backend/.wwebjs_cache/
+.wwebjs_auth/
+.wwebjs_cache/
+
+# User uploads (KTP, Transfer Proof, etc.)
+backend/uploads/ktp/*
+backend/uploads/bukti_transfer/*
+!backend/uploads/ktp/.gitkeep
+!backend/uploads/bukti_transfer/.gitkeep
+
+# IDEs and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
