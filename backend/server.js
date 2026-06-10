@@ -703,3 +703,25 @@ app.listen(PORT, () => {
   console.log(`[API URL] http://localhost:${PORT}`);
   console.log(`====================================================`);
 });
+
+
+
+// ----------------------------------------------------------------------
+// 9. ROUTING FRONTEND STATIC (Kunci Utama Mengatasi Cannot GET /)
+// ----------------------------------------------------------------------
+
+// Menyajikan folder frontend statis yang saat ini sudah Anda masukkan ke dalam backend
+app.use(express.static(path.join(__dirname, 'frontend')));
+
+// Endpoint utama untuk menyajikan file index.html milik pengguna umum
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+});
+
+// Endpoint khusus untuk menyajikan file dashboard milik admin
+app.get('/admin-dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'admin', 'admin.html'));
+});
+
+// Jalankan Server Utama
+app.listen(PORT, () => console.log(`[System] Server Camprent berjalan online di port ${PORT}`));
