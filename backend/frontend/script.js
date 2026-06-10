@@ -45,7 +45,7 @@ let catalog = []; // Menyimpan data katalog yang ditarik dari database / fallbac
 let cart = [];    // Menyimpan daftar barang yang sedang disewa
 
 // Konfigurasi URL API Backend
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '/api';
 
 // ---------------------------------------------------------
 // 3. EVENT LISTENERS UTAMA (ON LOAD)
