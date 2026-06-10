@@ -694,18 +694,6 @@ app.put('/api/penyewaan/:id/status', verifyAdmin, async (req, res) => {
   }
 });
 
-// ---------------------------------------------------------
-// 9. JALANKAN SERVER
-// ---------------------------------------------------------
-app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`[Camprent Backend] Berjalan di port: ${PORT}`);
-  console.log(`[API URL] http://localhost:${PORT}`);
-  console.log(`====================================================`);
-});
-
-
-
 // ----------------------------------------------------------------------
 // 9. ROUTING FRONTEND STATIC (Kunci Utama Mengatasi Cannot GET /)
 // ----------------------------------------------------------------------
@@ -723,5 +711,15 @@ app.get('/admin-dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'admin', 'admin.html'));
 });
 
-// Jalankan Server Utama
-app.listen(PORT, () => console.log(`[System] Server Camprent berjalan online di port ${PORT}`));
+// ---------------------------------------------------------
+// 10. JALANKAN SERVER
+// ---------------------------------------------------------
+app.listen(PORT, () => {
+  console.log(`====================================================`);
+  console.log(`[Camprent Backend] Berjalan di port: ${PORT}`);
+  console.log(`[API URL] http://localhost:${PORT}`);
+  console.log(`====================================================`);
+});
+
+
+
