@@ -1,5 +1,5 @@
 // admin.js - Camprent Admin Panel Control
-const BASE_URL = 'http://localhost:5000/api';
+const BASE_URL = '/api';
 let TOKEN = localStorage.getItem('admin_token') || '';
 
 // Element Selektor Utama
@@ -154,8 +154,8 @@ async function loadDataPenyewaan() {
                 const formatRupiah = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(item.total_harga);
 
                 // Path Gambar dari file system uploads backend
-                const ktpUrl = `http://localhost:5000/uploads/ktp/${item.ktp}`;
-                const buktiUrl = item.bukti_transfer ? `http://localhost:5000/uploads/bukti_transfer/${item.bukti_transfer}` : null;
+                const ktpUrl = `/uploads/ktp/${item.ktp}`;
+                const buktiUrl = item.bukti_transfer ? `/uploads/bukti_transfer/${item.bukti_transfer}` : null;
 
                 tr.innerHTML = `
                     <td>
@@ -324,7 +324,7 @@ async function loadDataAlatCamping() {
 
                 // 1. Cek dulu apakah nama file mengandung 'alat-' (Artinya barang upload-an baru lewat Multer Node.js)
                 if (alat.gambar && alat.gambar.startsWith('alat-')) {
-                    gambarUrl = `http://localhost:5000/uploads/alat/${alat.gambar}`;
+                    gambarUrl = `/uploads/alat/${alat.gambar}`;
                 } else {
                     // 2. Jika data seed (bawaan DB), cari objek di FALLBACK_CATALOG yang ID-nya sama dengan ID dari Database
                     const itemCocok = FALLBACK_CATALOG.find(item => item.id === alat.id);
