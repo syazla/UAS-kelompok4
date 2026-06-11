@@ -69,13 +69,16 @@ async function fetchKatalog() {
         if (result.status === 'success' && result.data.length > 0) {
             console.log('[API Connection] Berhasil terhubung ke Backend & Database MySQL.');
             // Gunakan gambar Unsplash estetik agar visual menarik, namun nama file gambar tetap disesuaikan dengan DB
-            catalog = result.data.map((item, index) => {
-                return {
-                    ...item,
-                    // Map gambar lokal ke URL fallback agar UI mempesona di tahap awal
-                    gambar_url: FALLBACK_CATALOG[index] ? FALLBACK_CATALOG[index].gambar : 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=600&auto=format&fit=crop'
-                };
-            });
+        //     catalog = result.data.map((item, index) => {
+        //         return {
+        //             ...item,
+        //             // Map gambar lokal ke URL fallback agar UI mempesona di tahap awal
+        //             gambar_url: FALLBACK_CATALOG[index] ? FALLBACK_CATALOG[index].gambar : 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=600&auto=format&fit=crop'
+        //         };
+        //     });
+        // Kode pengganti baru Anda:
+            catalog = result.data;
+
         } else {
             throw new Error('Katalog kosong atau format tidak sesuai');
         }
