@@ -65,18 +65,18 @@ async function fetchKatalog() {
     try {
         const response = await fetch(`${API_BASE_URL}/alat-camping`);
         const result = await response.json();
-        
+
         if (result.status === 'success' && result.data.length > 0) {
             console.log('[API Connection] Berhasil terhubung ke Backend & Database MySQL.');
             // Gunakan gambar Unsplash estetik agar visual menarik, namun nama file gambar tetap disesuaikan dengan DB
-        //     catalog = result.data.map((item, index) => {
-        //         return {
-        //             ...item,
-        //             // Map gambar lokal ke URL fallback agar UI mempesona di tahap awal
-        //             gambar_url: FALLBACK_CATALOG[index] ? FALLBACK_CATALOG[index].gambar : 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=600&auto=format&fit=crop'
-        //         };
-        //     });
-        // Kode pengganti baru Anda:
+            //     catalog = result.data.map((item, index) => {
+            //         return {
+            //             ...item,
+            //             // Map gambar lokal ke URL fallback agar UI mempesona di tahap awal
+            //             gambar_url: FALLBACK_CATALOG[index] ? FALLBACK_CATALOG[index].gambar : 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=600&auto=format&fit=crop'
+            //         };
+            //     });
+            // Kode pengganti baru Anda:
             catalog = result.data;
 
         } else {
@@ -86,7 +86,7 @@ async function fetchKatalog() {
         console.warn('[API Connection] Gagal terhubung ke Backend. Mengaktifkan mode offline/fallback dengan data 30 barang.');
         catalog = FALLBACK_CATALOG.map(item => ({ ...item, gambar_url: item.gambar }));
     }
-    
+
     renderKatalog(catalog);
 }
 
@@ -116,7 +116,7 @@ function renderKatalog(items) {
         const cardHtml = `
             <div class="katalog-card" data-category="${category}">
                 <div class="card-img-wrapper">
-                    <img src="${item.gambar_url}" alt="${item.nama_alat}">
+                    <img src="assets/${item.gambar}" alt="${item.nama_alat}">
                     <span class="card-stock-badge ${isAvailable ? 'available' : 'out'}">
                         ${isAvailable ? `Stok: ${item.stok}` : 'Stok Habis'}
                     </span>
@@ -401,8 +401,8 @@ function setupEventListeners() {
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', (e) => {
         const val = e.target.value.toLowerCase();
-        const filtered = catalog.filter(item => 
-            item.nama_alat.toLowerCase().includes(val) || 
+        const filtered = catalog.filter(item =>
+            item.nama_alat.toLowerCase().includes(val) ||
             (item.deskripsi && item.deskripsi.toLowerCase().includes(val))
         );
         renderKatalog(filtered);
@@ -414,7 +414,7 @@ function setupEventListeners() {
         btn.addEventListener('click', (e) => {
             categoryBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
+
             const cat = btn.getAttribute('data-category');
             if (cat === 'all') {
                 renderKatalog(catalog);
@@ -526,10 +526,10 @@ async function handleFormSubmit(e) {
             formData.append('jumlah', item.jumlah);
             formData.append('durasi', item.durasi);
             formData.append('metode_pembayaran', metode_pembayaran);
-            
+
             // Masukkan KTP
             formData.append('ktp', ktpFile);
-            
+
             // Masukkan Bukti Transfer jika metode transfer
             if (metode_pembayaran === 'Transfer' && tfFile) {
                 formData.append('bukti_transfer', tfFile);
@@ -561,7 +561,7 @@ async function handleFormSubmit(e) {
         // Reset keranjang & Form
         kosongkanKeranjang();
         document.getElementById('rentalForm').reset();
-        
+
         // Reset label file dropzone
         document.getElementById('ktpLabel').textContent = 'Pilih Foto KTP (.jpg, .png)';
         document.getElementById('ktpLabel').parentElement.classList.remove('has-file');
