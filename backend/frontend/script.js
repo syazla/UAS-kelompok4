@@ -66,18 +66,20 @@ async function fetchKatalog() {
         const response = await fetch(`${API_BASE_URL}/alat-camping`);
         const result = await response.json();
 
-        if (result.status === 'success' && result.data.length > 0) {
-            console.log('[API Connection] Berhasil terhubung ke Backend & Database MySQL.');
-            // Gunakan gambar Unsplash estetik agar visual menarik, namun nama file gambar tetap disesuaikan dengan DB
-            //     catalog = result.data.map((item, index) => {
-            //         return {
-            //             ...item,
-            //             // Map gambar lokal ke URL fallback agar UI mempesona di tahap awal
-            //             gambar_url: FALLBACK_CATALOG[index] ? FALLBACK_CATALOG[index].gambar : 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=600&auto=format&fit=crop'
-            //         };
-            //     });
-            // Kode pengganti baru Anda:
-            catalog = result.data;
+if (result.status === 'success' && result.data.length > 0) {
+    console.log('[API Connection] Berhasil terhubung ke Backend & Database MySQL.');
+    
+    // MENCUT SUNTIKAN GAMBAR BERDASARKAN NAMA ALAT (PASTI URUT & PAS)
+    catalog = result.data.map(item => {
+        // Cari barang di FALLBACK_CATALOG yang "nama_alat"-nya persis sama dengan di database
+        const itemCocok = FALLBACK_CATALOG.find(f => f.nama_alat === item.nama_alat);
+        
+        return {
+            ...item,
+            // Jika cocok, ambil gambar_url aslinya (Unsplash/lokal). Jika tidak, pakai gambar bawaan database.
+            gambar_url: itemCocok ? itemCocok.gambar_url || itemCocok.gambar : item.gambar
+        };
+    });
 
         } else {
             throw new Error('Katalog kosong atau format tidak sesuai');
@@ -116,7 +118,7 @@ function renderKatalog(items) {
         const cardHtml = `
             <div class="katalog-card" data-category="${category}">
                 <div class="card-img-wrapper">
-                    <img src="assets/${item.gambar}" alt="${item.nama_alat}">
+                    <img src="${item.gambar_url}" alt="${item.nama_alat}">
                     <span class="card-stock-badge ${isAvailable ? 'available' : 'out'}">
                         ${isAvailable ? `Stok: ${item.stok}` : 'Stok Habis'}
                     </span>
