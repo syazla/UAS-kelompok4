@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Camprent</title>
     <link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
 
     <div id="login-modal" class="modal-overlay">
@@ -28,7 +30,7 @@
     </div>
 
     <div id="main-dashboard" class="dashboard-container" style="display: none;">
-        
+
         <aside class="sidebar">
             <div class="brand">
                 <h3>Camprent Admin</h3>
@@ -39,11 +41,17 @@
                 <a href="#section-penyewaan" class="menu-item" onclick="switchSection('penyewaan')">Data Penyewaan</a>
                 <a href="#section-alat" class="menu-item" onclick="switchSection('alat')">Data Alat Camping</a>
                 <button id="btn-logout" class="menu-item logout-btn">Logout</button>
+                <!-- TOMBOL BARU: KEMBALI KE BERANDA PENGGUNA -->
+                <a href="/" class="btn-back-to-user"
+                    style="display: flex; align-items: center; justify-content: center; gap: 8px; background-color: #4a5568; color: white; padding: 10px 15px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; margin-bottom: 10px; transition: background 0.3s; border: 1px solid #718096;">
+                    🌐 Lihat Beranda Toko
+                </a>
+
             </nav>
         </aside>
 
         <main class="content">
-            
+
             <section id="section-dashboard" class="dashboard-section active-section">
                 <h2>Ringkasan Statistik</h2>
                 <div class="stats-grid">
@@ -80,7 +88,7 @@
                             </tr>
                         </thead>
                         <tbody id="tabel-penyewaan">
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </section>
@@ -99,7 +107,7 @@
                             </tr>
                         </thead>
                         <tbody id="tabel-alat">
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </section>
@@ -109,4 +117,5 @@
 
     <script src="admin.js"></script>
 </body>
+
 </html>

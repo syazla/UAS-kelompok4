@@ -18,7 +18,7 @@ const FALLBACK_CATALOG = [
     { id: 10, nama_alat: "Tiang Flysheet", harga: 5000, stok: 20, deskripsi: "Penyangga besi utama untuk mendirikan flysheet sebagai tempat berkumpul atau dapur darurat.", gambar: "assets/tiang_flysheet.png" },
     { id: 11, nama_alat: "Pasak Tenda", harga: 1000, stok: 100, deskripsi: "Komponen krusial untuk menancapkan tenda dan flysheet ke tanah agar kokoh ditiup angin.", gambar: "assets/pasak_tenda.png" },
     { id: 12, nama_alat: "Kotak P3K", harga: 5000, stok: 15, deskripsi: "Perlengkapan keselamatan medis wajib untuk mengantisipasi luka ringan atau cedera di gunung.", gambar: "assets/active_kotak-p3k.png" },
-    { id: 13, nama_alat: "Kompor Portable / Kompor Camping", harga: 10000, stok: 25, deskripsi: "Alat masak utama yang ringkas untuk mengolah makanan dan air hangat di area camp.", gambar: "assets/active_kotak-p3k.png" },
+    { id: 13, nama_alat: "Kompor Portable / Kompor Camping", harga: 10000, stok: 25, deskripsi: "Alat masak utama yang ringkas untuk mengolah makanan dan air hangat di area camp.", gambar: "assets/kompor.png" },
     { id: 14, nama_alat: "Gas Portable", harga: 5000, stok: 50, deskripsi: "Bahan bakar wajib yang harus selalu ada untuk menyalakan kompor camping.", gambar: "assets/gas_portable.png" },
     { id: 15, nama_alat: "Nesting / Peralatan Masak", harga: 10000, stok: 20, deskripsi: "Set panci dan wajan susun yang praktis untuk memasak berbagai jenis makanan di gunung.", gambar: "assets/nesting.png" },
     { id: 16, nama_alat: "Jaket Waterproof", harga: 15000, stok: 15, deskripsi: "Pakaian luar utama pendaki untuk menahan badai angin dan air hujan di jalur pendakian.", gambar: "assets/jaket waterproof.png" },

@@ -206,6 +206,8 @@ body {
     border-right: 1px solid rgba(208, 192, 146, 0.1);
 }
 
+.btn-back-to-user:hover { background-color: #2d3748; })
+
 .brand {
     padding: 0 24px 28px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
