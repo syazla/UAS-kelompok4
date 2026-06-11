@@ -694,6 +694,35 @@ app.put('/api/penyewaan/:id/status', verifyAdmin, async (req, res) => {
   }
 });
 
+// ======================================================================
+// ENDPOINT BARU: HAPUS TRANSAKSI PENYEWAAN (Admin Only)
+// ======================================================================
+app.delete('/api/penyewaan/:id', verifyAdmin, async (req, res) => {
+  const transactionId = req.params.id;
+
+  try {
+    // 1. Cek validasi apakah data transaksi tersebut memang ada di database
+    const [rows] = await pool.query('SELECT id FROM penyewaan WHERE id = ?', [transactionId]);
+    if (rows.length === 0) {
+      return res.status(404).json({ 
+        status: 'error', 
+        message: 'Data transaksi tidak ditemukan di database.' 
+      });
+    }
+
+    // 2. Eksekusi penghapusan baris data dari database MySQL Railway
+    await pool.query('DELETE FROM penyewaan WHERE id = ?', [transactionId]);
+
+    // 3. Kirim respon sukses ke frontend
+    res.json({
+      status: 'success',
+      message: 'Data transaksi penyewaan berhasil dihapus secara permanen!'
+    });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+});
+
 // ----------------------------------------------------------------------
 // 9. ROUTING FRONTEND STATIC (Kunci Utama Mengatasi Cannot GET /)
 // ----------------------------------------------------------------------

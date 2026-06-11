@@ -42,7 +42,7 @@ formLogin.addEventListener('submit', async (e) => {
             TOKEN = resData.token;
             localStorage.setItem('admin_token', resData.token);
             localStorage.setItem('admin_nama', resData.admin.nama_admin);
-            
+
             showDashboard();
         } else {
             loginError.textContent = resData.message || 'Login gagal, periksa kembali akun Anda.';
@@ -71,7 +71,7 @@ function showDashboard() {
     loginModal.style.display = 'none';
     mainDashboard.style.display = 'flex';
     namaAdminLogged.textContent = localStorage.getItem('admin_nama') || 'Super Admin';
-    
+
     // Load seluruh data dari API database semenjak login sukses
     loadStatistik();
     loadDataPenyewaan();
@@ -85,7 +85,7 @@ function switchSection(sectionId) {
     // Sembunyikan semua section
     const sections = document.querySelectorAll('.dashboard-section');
     sections.forEach(sec => sec.classList.remove('active-section'));
-    
+
     // Hilangkan semua kelas active di sidebar links
     const menuItems = document.querySelectorAll('.menu-item');
     menuItems.forEach(item => item.classList.remove('active'));
@@ -149,7 +149,7 @@ async function loadDataPenyewaan() {
 
             listTransaksi.forEach(item => {
                 const tr = document.createElement('tr');
-                
+
                 // Format total rupiah ke mata uang lokal IDR
                 const formatRupiah = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(item.total_harga);
 
@@ -185,6 +185,12 @@ async function loadDataPenyewaan() {
                             <button class="btn-action btn-approve" onclick="updateStatusSewa(${item.id}, 'disetujui')">Setujui</button>
                             <button class="btn-action btn-reject" onclick="updateStatusSewa(${item.id}, 'ditolak')">Tolak</button>
                         ` : `<span style="color:#888; font-size:12px;">Selesai diproses</span>`}
+                        <!-- Tombol aksi Setujui / Tolak Anda yang lama biarkan tetap di sini -->
+    
+                        <!-- SUNTIKKAN TOMBOL HAPUS BARU INI DI BAWAHNYA: -->
+                        <button class="btn-hapus" onclick="hapusTransaksi(${item.id})" style="background-color: #ff4d4d; color: white; border: none; padding: 6px 12px; cursor: pointer; border-radius: 4px; margin-top: 8px; font-weight: bold; width: 100%;">
+                          🗑️ Hapus
+                        </button>
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -246,7 +252,7 @@ async function updateStatusSewa(id, statusBaru) {
 //             listAlat.forEach(alat => {
 //                 const tr = document.createElement('tr');
 //                 const formatHarga = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(alat.harga);
-                
+
 //                 // Mengambil gambar default dari backend (jika seed, gambar langsung string nama_file)
 //                 const gambarUrl = `http://localhost:5000/uploads/alat/${alat.gambar}`;
 
@@ -318,7 +324,7 @@ async function loadDataAlatCamping() {
             listAlat.forEach(alat => {
                 const tr = document.createElement('tr');
                 const formatHarga = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(alat.harga);
-                
+
                 // --- LOGIKA EMAS COCOKKAN GAMBAR ---
                 let gambarUrl = '';
 
@@ -328,7 +334,7 @@ async function loadDataAlatCamping() {
                 } else {
                     // 2. Jika data seed (bawaan DB), cari objek di FALLBACK_CATALOG yang ID-nya sama dengan ID dari Database
                     const itemCocok = FALLBACK_CATALOG.find(item => item.id === alat.id);
-                    
+
                     if (itemCocok) {
                         // Ambil path "assets/tenda2org.png" -> diubah jadi "../assets/tenda2org.png" karena posisi admin ada di folder admin/
                         const pathBersih = itemCocok.gambar.replace('assets/', '');
@@ -354,5 +360,40 @@ async function loadDataAlatCamping() {
         }
     } catch (err) {
         tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:red;">Gagal memuat katalog barang.</td></tr>';
+    }
+}
+
+
+// ======================================================================
+// LANGKAH 3: FUNGSI MENANGANI KLIK TOMBOL HAPUS TRANSAKSI DI FRONTEND
+// ======================================================================
+async function hapusTransaksi(id) {
+    // Alert konfirmasi demi keamanan agar admin tidak tidak sengaja menghapus data penting
+    const konfirmasi = confirm("Apakah Anda yakin ingin menghapus permanen data transaksi ini dari database?");
+    if (!konfirmasi) return;
+
+    try {
+        // Menembak endpoint DELETE menggunakan BASE_URL relatif yang sudah kita ubah kemarin
+        const response = await fetch(`${BASE_URL}/penyewaan/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${TOKEN}`, // Menyertakan token JWT admin yang sah
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            alert(result.message);
+            
+            // PENTING: Memanggil fungsi utama Anda agar tabel otomatis ter-refresh bersih tanpa reload halaman
+            loadDataPenyewaan(); 
+        } else {
+            alert('Gagal menghapus data: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Error saat menghapus data transaksi:', error);
+        alert('Terjadi kesalahan koneksi saat menghubungi server backend.');
     }
 }
