@@ -1,8 +1,3 @@
-// JAMINAN KEAMANAN: Cek apakah ada token admin di browser saat halaman dimuat
-if (!localStorage.getItem('admin_token')) {
-    alert('Akses Ditolak! Anda harus login sebagai admin terlebih dahulu.');
-    window.location.href = '/'; // Jika bukan admin, otomatis ditendang ke halaman depan pengguna
-}
 
 // admin.js - Camprent Admin Panel Control
 const BASE_URL = '/api';
@@ -135,6 +130,12 @@ async function loadStatistik() {
 // FUNGSI AMBIL & TAMPILKAN DATA PENYEWAAN (REALTIME SIMULATION)
 // ---------------------------------------------------------
 async function loadDataPenyewaan() {
+    // 🛡️ SUNTIKKAN KODE PENGAMAN PINTAR INI DI SINI:
+    if (!localStorage.getItem('admin_token')) {
+        alert('Akses Ditolak! Anda harus login sebagai admin terlebih dahulu.');
+        window.location.href = '/'; 
+        return; // Menghentikan fungsi agar kode di bawahnya tidak dieksekusi
+    }
     const tbody = document.getElementById('tabel-penyewaan');
     tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Memuat data transaksi...</td></tr>';
 
